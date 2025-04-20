@@ -1,0 +1,45 @@
+services:
+  pg_node1:
+    image: postgres:16
+    container_name: pg_node1
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5441:5432"
+    volumes:
+      - pg_node1_data:/var/lib/postgresql/data
+    networks:
+      - logreplnet
+
+  pg_node2:
+    image: postgres:16
+    container_name: pg_node2
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5442:5432"
+    volumes:
+      - pg_node2_data:/var/lib/postgresql/data
+    networks:
+      - logreplnet
+
+  pg_node3:
+    image: postgres:16
+    container_name: pg_node3
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5443:5432"
+    volumes:
+      - pg_node3_data:/var/lib/postgresql/data
+    networks:
+      - logreplnet
+
+networks:
+  logreplnet:
+    driver: bridge
+
+volumes:
+  pg_node1_data:
+  pg_node2_data:
+  pg_node3_data:
